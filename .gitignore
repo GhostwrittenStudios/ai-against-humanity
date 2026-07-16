@@ -5,6 +5,10 @@ node_modules/
 releases/
 dist/
 out/
+*.exe
+*.msi
+*.dmg
+*.AppImage
 
 # Logs
 npm-debug.log*
