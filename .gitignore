@@ -1,0 +1,44 @@
+# Node dependencies
+node_modules/
+
+# Electron build output
+releases/
+dist/
+out/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Python cache (for serve.py)
+__pycache__/
+*.pyc
+
+# Build cache
+*.asar
+*.blockmap
+*.yml
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# VS Code
+.vscode/
+
+# GitHub Actions artifacts (if downloaded locally)
+*.zip
+*.tar.gz
+
+# Electron-builder temp files
+build/
+electron-builder.yml
+electron-builder.json
+

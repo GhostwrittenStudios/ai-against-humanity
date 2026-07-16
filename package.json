@@ -1,0 +1,46 @@
+{
+  "name": "ai-against-humanity",
+  "version": "0.1.0",
+  "description": "A local AI party game powered by Ollama.",
+  "main": "desktop/main.cjs",
+  "author": "Ghostwritten Studios",
+  "license": "MIT",
+
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+
+  "devDependencies": {
+    "electron": "^39.0.0",
+    "electron-builder": "^26.0.0"
+  },
+
+  "build": {
+    "appId": "com.aiagainsthumanity.game",
+    "productName": "AI Against Humanity",
+    "asar": true,
+
+    "directories": {
+      "output": "releases"
+    },
+
+    "files": [
+      "src/**/*",
+      "desktop/**/*",
+      "package.json"
+    ],
+
+    "win": {
+      "target": ["nsis", "portable"]
+    },
+
+    "mac": {
+      "target": ["dmg"]
+    },
+
+    "linux": {
+      "target": ["AppImage"]
+    }
+  }
+}

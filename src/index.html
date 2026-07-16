@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' http: https:;">
+  <title>AI Against Humanity</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header id="top-bar">
+    <div class="logo">
+      <span class="logo-card black-mini">AI</span>
+      <span class="logo-card white-mini">AH</span>
+      <h1>AI Against Humanity</h1>
+    </div>
+    <div class="top-actions">
+      <span id="round-indicator" class="round-indicator hidden"></span>
+      <button id="btn-settings" class="icon-btn" title="Settings">&#9881;</button>
+    </div>
+  </header>
+
+  <div id="connection-banner" class="banner hidden"></div>
+
+  <!-- ======== START SCREEN ======== -->
+  <section id="screen-start" class="screen">
+    <div class="start-box">
+      <div class="start-cards">
+        <div class="card black-card demo-card tilt-left">A party game for horrible people, now written by <span class="blank">a robot</span>.</div>
+        <div class="card white-card demo-card tilt-right">Letting the AI pick the punchline.</div>
+      </div>
+      <p class="start-sub">Every black and white card is invented on the fly by your local AI.<br>
+        You vs. Rebecca, Timothy &amp; Steve. First to <span id="start-target-score">7</span> points wins.</p>
+      <div class="start-buttons">
+        <button id="btn-continue" class="big-btn hidden">Continue Game</button>
+        <button id="btn-start" class="big-btn">Start Game</button>
+      </div>
+      <p class="start-hint" id="start-hint"></p>
+    </div>
+  </section>
+
+  <!-- ======== GAME SCREEN ======== -->
+  <section id="screen-game" class="screen hidden">
+
+    <div id="table-area">
+      <div id="round-table">
+        <div id="table-center">
+          <div id="black-card-slot"></div>
+          <div id="submission-area"></div>
+          <div id="table-message" class="hidden"></div>
+        </div>
+      </div>
+      <!-- seats are injected by JS -->
+    </div>
+
+    <div id="status-line"></div>
+
+    <div id="hand-area">
+      <div id="hand-scroller">
+        <div id="hand"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== CARD ZOOM MODAL ======== -->
+  <div id="zoom-overlay" class="overlay hidden">
+    <div id="zoom-card-wrap">
+      <div id="zoom-card" class="card white-card zoom-card"></div>
+      <div class="zoom-hint">Drag up to play &middot; drag down (or click outside) to return</div>
+      <div class="zoom-buttons">
+        <button id="zoom-play" class="big-btn small">Play this card</button>
+        <button id="zoom-back" class="ghost-btn">Back to hand</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== ROUND WINNER BANNER ======== -->
+  <div id="winner-overlay" class="overlay hidden">
+    <div class="winner-box">
+      <div id="winner-title" class="winner-title"></div>
+      <div class="winner-combo">
+        <div id="winner-black" class="card black-card combo-card"></div>
+        <div id="winner-white" class="card white-card combo-card"></div>
+      </div>
+      <div id="winner-scores" class="winner-scores"></div>
+      <div class="winner-buttons">
+        <button id="btn-next-round" class="big-btn small">Next Round</button>
+        <button id="btn-menu" class="ghost-btn hidden">Main Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== SETTINGS MODAL ======== -->
+  <div id="settings-overlay" class="overlay hidden">
+    <div class="modal">
+      <h2>Settings</h2>
+
+      <h3>Player</h3>
+      <label class="field">
+        <span>Your name</span>
+        <input type="text" id="set-username" maxlength="20" placeholder="Player">
+      </label>
+      <div class="field avatar-field">
+        <span>Profile image</span>
+        <div class="avatar-row">
+          <img id="set-avatar-preview" class="avatar-preview" alt="Your avatar">
+          <div class="avatar-btns">
+            <label class="ghost-btn file-btn">
+              Choose image
+              <input type="file" id="set-avatar-file" accept="image/*" hidden>
+            </label>
+            <button id="set-avatar-clear" class="ghost-btn">Reset</button>
+          </div>
+        </div>
+        <small>Cropped to a square automatically.</small>
+      </div>
+
+      <h3>AI Server (Ollama)</h3>
+      <label class="field">
+        <span>Server URL</span>
+        <input type="text" id="set-ollama-url" placeholder="http://localhost:11434">
+      </label>
+      <label class="field">
+        <span>Model</span>
+        <div class="model-row">
+          <input type="text" id="set-model" list="model-list" placeholder="model name">
+          <button id="btn-fetch-models" class="ghost-btn" title="List models from the server">&#8635;</button>
+        </div>
+        <datalist id="model-list"></datalist>
+      </label>
+      <div class="field">
+        <button id="btn-test-conn" class="ghost-btn">Test connection</button>
+        <span id="test-conn-result" class="test-result"></span>
+      </div>
+
+      <h3>Game</h3>
+      <label class="field">
+        <span>Points to win</span>
+        <input type="number" id="set-target-score" min="1" max="20" step="1">
+      </label>
+      <div class="field">
+        <span>Theme packs</span>
+        <small class="muted">Coming soon &mdash; add-on topics (politics, video games, &hellip;) will plug in here.</small>
+      </div>
+
+      <div class="modal-actions">
+        <button id="btn-settings-save" class="big-btn small">Save</button>
+        <button id="btn-settings-cancel" class="ghost-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-holder"></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
