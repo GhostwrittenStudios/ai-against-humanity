@@ -30,7 +30,7 @@ jobs:
 
       - name: Build Windows/Linux
         if: runner.os != 'macOS'
-        run: npm run dist
+        run: npm run dist -- --publish never
 
       - name: Build macOS
         if: runner.os == 'macOS'
