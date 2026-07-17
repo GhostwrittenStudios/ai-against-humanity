@@ -30,7 +30,12 @@ jobs:
         run: npm install
 
       - name: Build Electron app
-        run: npm run dist
+        run: |
+          if [ "${{ matrix.os }}" = "macos-latest" ]; then
+            npm run dist -- --mac --x64
+          else
+            npm run dist
+          fi
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
