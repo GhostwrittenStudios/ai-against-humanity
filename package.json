@@ -19,6 +19,7 @@
   "build": {
     "appId": "com.aiagainsthumanity.game",
     "productName": "AI Against Humanity",
+    "publish": "never",
     "asar": true,
 
     "directories": {
@@ -36,9 +37,10 @@
     },
 
     "mac": {
-      "target": ["dmg"]
+      "target": "dmg",
+      "arch": "x64"
     },
-
+    
     "linux": {
       "target": ["AppImage"]
     }
