@@ -39,7 +39,11 @@ You need Ollama running locally with at least one model installed.
 Recommended model:
 
 Code
-ollama pull huihui_ai/qwen3.5-abliterated:2B
+ollama pull gemma3:4b
+
+or
+
+ollama pull huihui_ai/qwen3.5-abliterated:2B (smaller for lesser machines)
 
 Web & Mobile Version
 
