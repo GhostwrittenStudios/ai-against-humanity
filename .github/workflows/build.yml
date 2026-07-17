@@ -1,7 +1,7 @@
 name: Build AI Against Humanity
 permissions:
   contents: write
-  
+
 on:
   push:
     tags:
@@ -41,3 +41,22 @@ jobs:
         with:
           name: ${{ runner.os }}
           path: releases/**
+
+      - name: Upload Windows Release
+        if: runner.os == 'Windows'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            releases/*.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload macOS Release
+        if: runner.os == 'macOS'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            releases/*.dmg
+            releases/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
