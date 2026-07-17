@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [windows-latest, macos-latest, ubuntu-latest]
+        os: [windows-latest, macos-latest]
 
     steps:
       - name: Checkout repository
@@ -28,9 +28,9 @@ jobs:
         run: | 
           npm ci --omit=optional
 
-      - name: Build Windows/Linux
+      - name: Build Windows
         if: runner.os != 'macOS'
-        run: npm run dist -- --publish never
+        run: npm run dist
 
       - name: Build macOS
         if: runner.os == 'macOS'
