@@ -1,13 +1,37 @@
-⭐ AI Against Humanity — Clean, Player‑First README
+# AI Against Humanity
+
+A single-player, Cards Against Humanity-style party game where **every black and white
+card is written on the fly by a local AI** (Ollama). You play against three bots —
+Rebecca, Timothy, and Steve — around a virtual table. The Card Czar role rotates
+each round; first to the target score (default 7) wins.
+
+## In-Game Screenshot
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/6908784f-8df4-46ba-96c1-df57d7e2a7ff" />
+
+## Menu Screenshot
+<img width="1166" height="813" alt="image" src="https://github.com/user-attachments/assets/e24f63d8-8254-41b1-850f-be742e8d2fc9" />
+
+## Requirements
+
+- [Ollama](https://ollama.com) running locally (default `http://localhost:11434`)
+- A pulled model — default: `huihui_ai/qwen3.5-abliterated:2B`
+  (`ollama pull huihui_ai/qwen3.5-abliterated:2B`, or pick any installed model in Settings)
+- Python (only used to serve the static files for things like mobile browser game play)
+
 🎮 Play the Game
-Download
-Grab the latest desktop builds from the releases/ folder:
 
-Windows — Installer + portable .exe
+Download:
+Grab the latest desktop builds:
 
-macOS — .dmg
+### Windows Portable: 
+https://github.com/GhostwrittenStudios/ai-against-humanity/releases/download/v1.2.3/AI.Against.Humanity.0.1.0.exe
 
-Linux — .AppImage
+### Windows Installer: 
+https://github.com/GhostwrittenStudios/ai-against-humanity/releases/download/v1.2.3/AI.Against.Humanity.Setup.0.1.0.exe
+
+### Mac Installer: 
+https://github.com/GhostwrittenStudios/ai-against-humanity/releases/download/v1.2.3/AI.Against.Humanity-0.1.0-arm64.dmg
+
 
 Requirements
 You need Ollama running locally with at least one model installed.
@@ -16,8 +40,19 @@ Recommended model:
 
 Code
 ollama pull huihui_ai/qwen3.5-abliterated:2B
+
 Web & Mobile Version
+
 You can also play in a browser:
+
+## Run
+
+```
+python ai-against-humanity/serve.py
+```
+
+Then open <http://localhost:8123>. (`serve.py` is just `http.server` with caching
+disabled, so edits always show up on reload.)
 
 Local PC: <http://localhost:8123>
 
