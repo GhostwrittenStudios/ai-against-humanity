@@ -14,9 +14,6 @@ jobs:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
 
-    env:
-      ELECTRON_MIRROR: https://npmmirror.com/mirrors/electron/
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -25,18 +22,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
+          cache: npm
 
       - name: Install dependencies
         run: | 
-          npm ci --no-optional || npm ci --no-optional
+          npm ci --omit=optional
 
-      - name: Build Electron app
-        run: |
-          if [ "${{ matrix.os }}" = "macos-latest" ]; then
-            npm run dist -- --mac --x64
-          else
-            npm run dist
-          fi
+      - name: Build Windows/Linux
+        if: runner.os != 'macOS'
+        run: npm run dist
+
+      - name: Build macOS
+        if: runner.os == 'macOS'
+        run: npm run dist -- --mac --x64
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
