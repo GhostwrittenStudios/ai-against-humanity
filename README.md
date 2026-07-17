@@ -1,6 +1,3 @@
-
-* need this rewritten in markdown
-
 ⭐ AI Against Humanity — Clean, Player‑First README
 🎮 Play the Game
 Download
